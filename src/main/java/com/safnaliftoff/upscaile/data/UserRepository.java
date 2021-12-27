@@ -1,4 +1,4 @@
-package com.safnaliftoff.upscaile.models.data;
+package com.safnaliftoff.upscaile.data;
 
 import com.safnaliftoff.upscaile.models.User;
 import org.springframework.data.repository.CrudRepository;

@@ -1,4 +1,4 @@
-package com.safnaliftoff.upscaile.models.dto;
+package com.safnaliftoff.upscaile.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

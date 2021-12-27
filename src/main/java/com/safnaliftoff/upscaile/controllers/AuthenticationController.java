@@ -1,9 +1,9 @@
 package com.safnaliftoff.upscaile.controllers;
 
 import com.safnaliftoff.upscaile.models.User;
-import com.safnaliftoff.upscaile.models.data.UserRepository;
-import com.safnaliftoff.upscaile.models.dto.LoginFormDTO;
-import com.safnaliftoff.upscaile.models.dto.RegisterFormDTO;
+import com.safnaliftoff.upscaile.data.UserRepository;
+import com.safnaliftoff.upscaile.dto.LoginFormDTO;
+import com.safnaliftoff.upscaile.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

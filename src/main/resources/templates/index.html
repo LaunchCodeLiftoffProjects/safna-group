@@ -10,6 +10,26 @@
     <h2>upsc.Ai.le Authentication Site INDEX</h2>
 </div>
 
+<div class="row">
+    <div class="col-lg-8 mt-5">
+
+        <div th:if="${message}">
+            <h2 th:text="${message}"/>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" action="/">
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" name="file">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    </div>
+</div>
+
 <div>
 <h1>User Account Page ...</h1>
 <p>User Files Go Here ...</p>

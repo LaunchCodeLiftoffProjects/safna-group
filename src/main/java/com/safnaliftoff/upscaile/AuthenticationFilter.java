@@ -2,7 +2,7 @@ package com.safnaliftoff.upscaile;
 
 import com.safnaliftoff.upscaile.controllers.AuthenticationController;
 import com.safnaliftoff.upscaile.models.User;
-import com.safnaliftoff.upscaile.models.data.UserRepository;
+import com.safnaliftoff.upscaile.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
