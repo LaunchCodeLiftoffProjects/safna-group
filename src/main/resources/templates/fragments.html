@@ -1,30 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 
-<head th:fragment="header">
+    <head th:fragment="header">
 
-    <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/authentication.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title th:text="'Authentication Site' + ${title == null ? '' : ' :: ' + title}">Authentication Site</title>
-</head>
+        <!-- Font Awesome CSS -->
+        <script src="https://kit.fontawesome.com/abd9227cf4.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>-->
 
-<body>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">upsc.AI.le : super resolution image upscaling</a>
+        <!-- For Modal -->
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="/css/custom.css" rel="stylesheet">
+
+
+        <title th:text="'Authentication Site' + ${title == null ? '' : ' :: ' + title}">Authentication Site</title>
+    </head>
+
+    <body>
+
+        <!-- NAVBAR -->
+        <nav th:fragment="page-header" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a th:href="@{/}" id="brandnav" class="navbar-brand">upsc.AI.le</a>-->
+                    <img src="https://play-lh.googleusercontent.com/4ciwCWHhgxfSIPRoLHICpCnuRBRjydYgqMBvLla0q3vhjJpy8wOr-Aa9WX-435Ef-Hk" alt="upcaile logo" height="50" id="brandnav-image">
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/logout}" class="btn btn-danger navbar-btn" role="button">Logout</a>--></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /NAVBAR -->
+
+
+        <!-- FOOTER -->
+        <!--<div th:fragment="page-footer" class="navbar navbar-inverse navbar-fixed-top">-->
+        <div th:fragment="page-footer" class="bg-dark">
+
+            <footer class="container text-center">
+                <br>
+                <p id="footerText">&copy; <a href="https://www.launchcode.org/"> LaunchCode <i class="fas fa-rocket"></i> LiftOff</a> | Safna Group 2021-2022</p>
+                <br>
+                <!-- SCRIPTS -->
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+                <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="/js/script.js"></script>
+                <!-- /SCRIPTS -->
+            </footer>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+        <!-- /FOOTER -->
 
-</body>
+    </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org/">-->
+
+<!--<head th:fragment="header">-->
+
+<!--    &lt;!&ndash; Bootstrap stylesheets and script &ndash;&gt;-->
+<!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />-->
+<!--    <link th:href="@{/css/authentication.css}" rel="stylesheet" />-->
+<!--    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>-->
+
+<!--    <title th:text="'Authentication Site' + ${title == null ? '' : ' :: ' + title}">Authentication Site</title>-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">-->
+<!--    <div class="container">-->
+<!--        <div class="navbar-header">-->
+<!--            <a th:href="@{/}" class="navbar-brand">upsc.AI.le : super resolution image upscaling</a>-->
+<!--        </div>-->
+<!--        <div class="navbar-collapse collapse">-->
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li><a th:href="@{/logout}">Logout</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"-->
+<!--        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<!--<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>-->
+<!--<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>-->
+
+<!--</body>-->
+<!--</html>-->
