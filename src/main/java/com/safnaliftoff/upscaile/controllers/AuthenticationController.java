@@ -22,6 +22,8 @@ public class AuthenticationController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ImageController imageController;
 
     private static final String userSessionKey = "user";
 
@@ -116,7 +118,8 @@ public class AuthenticationController {
             model.addAttribute("title", "Log In");
             return "login";
         }
-
+        System.out.println("this is the user name ======== "  + loginFormDTO.getUsername()+" it needs to be passed");
+        imageController.setUserName(loginFormDTO.getUsername());
         setUserInSession(request.getSession(), theUser);
 
         return "redirect:";

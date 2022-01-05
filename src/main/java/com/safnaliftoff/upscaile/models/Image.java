@@ -2,6 +2,8 @@ package com.safnaliftoff.upscaile.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Image extends AbstractEntity {
@@ -12,13 +14,26 @@ public class Image extends AbstractEntity {
     private String name;
 
     private String location;
+    @ManyToOne
+    private  User user;
+
 
     public Image() {
     }
 
-    public Image(String name, String location) {
+    public Image(String name, String location, User user) {
         this.name = name;
         this.location = location;
+        this.user = user;
+
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public byte[] getContent() {
