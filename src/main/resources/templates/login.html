@@ -1,30 +1,181 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body class="container">
+    <head th:replace="fragments :: head">
 
-<header th:replace="fragments :: header"></header>
+    </head>
+    <body class="container">
+
+        <div th:replace="fragments :: page-header"></div>
+        <header th:replace="fragments :: header"></header>
 
 
-<form method="post">
-    <div><h1>upsc.AI.le : super resolution image upscaling</h1></div>
-    <div class="form-group">
-        <label th:for="username">Username
-            <input class="form-control" th:field="${loginFormDTO.username}">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.username}"></p>
-    </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${loginFormDTO.password}" type="password">
-        </label>
-        <p class="error" th:errors="${loginFormDTO.password}"></p>
-    </div>
 
-    <input type="submit" class="btn btn-primary" value="Log In" />
-</form>
+        <!-- Main jumbotron -->
+        <main role="main">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 id="brandpage" class="display-3">upsc.AI.le</h1>
+                    <h5>Super Resolution Image Upscaling</h5>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col align-self-center text-right">
+                            <img src="https://play-lh.googleusercontent.com/4ciwCWHhgxfSIPRoLHICpCnuRBRjydYgqMBvLla0q3vhjJpy8wOr-Aa9WX-435Ef-Hk" alt="upscaled image" height="200" id="imagePadding">
+                        </div>
+                        <div class="col align-self-center">
+                            <p>Have a small, low resolution image that you need to enlarge without degrading your image
+                                quality?  Now you can.</p>
+                        </div>
+                    </div>
 
-<p>Don't have an account? <a href="/register">Register for one.</a></p>
 
-</body>
+                    <!-- LOGIN MODAL -->
+                    <div class="open-modal">
+                        <a href="#loginModal" class="btn btn-primary btn-lg trigger-btn" data-toggle="modal">Login</a>
+                        <p>Don't have an account?
+                            <a href="#registerModal" data-toggle="modal">Register for one MODAL.</a>
+                        </p>
+                        <p>Don't have an account?
+                            <a href="/register">Register for one /REGISTER PAGE.</a>
+                        </p>
+                    </div>
+                    <div id="loginModal" class="modal fade text-center">
+                        <div class="modal-dialog">
+                            <div class="col-lg-8 col-sm-8 col-12 main-section">
+                                <div class="modal-content">
+                                    <!--<div class="col-lg-12 col-sm-12 col-12 user-img">
+                                        <img src="/demo/man01.png">
+                                    </div>-->
+                                    <div class="col-lg-12 col-sm-12 col-12 user-name">
+                                        <h1>User Login</h1>
+                                        <button type="button" class="close" data-dismiss="modal"></button>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-12 form-input">
+                                        <form method="post">
+                                            <div class="form-group">
+                                                <label th:for="username">Username
+                                                    <input class="form-control" th:field="${loginFormDTO.username}">
+                                                </label>
+                                                <p class="error" th:errors="${loginFormDTO.username}"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label th:for="password">Password
+                                                    <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+                                                </label>
+                                                <p class="error" th:errors="${loginFormDTO.password}"></p>
+                                            </div>
+                                            <input type="submit" class="btn btn-primary" value="Log In" />
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-12 link-part">
+                                        <a href="#" target="_blank">Forgot Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LOGIN MODAL -->
+
+                    <!-- REGISTER MODAL -->
+<!--                    <div class="open-modal">-->
+<!--                        &lt;!&ndash;<a href="#registerModal" class="btn btn-primary btn-lg trigger-btn" data-toggle="modal">Register</a>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div id="registerModal" class="modal fade text-center">-->
+<!--                        <div class="modal-dialog">-->
+<!--                            <div class="col-lg-8 col-sm-8 col-12 main-section">-->
+<!--                                <div class="modal-content">-->
+<!--                                    &lt;!&ndash;<div class="col-lg-12 col-sm-12 col-12 user-img">-->
+<!--                                        <img src="/demo/man01.png">-->
+<!--                                    </div>&ndash;&gt;-->
+<!--                                    <div class="col-lg-12 col-sm-12 col-12 user-name">-->
+<!--                                        <h1>User Registration</h1>-->
+<!--                                        <button type="button" class="close" data-dismiss="modal"></button>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-12 col-sm-12 col-12 form-input">-->
+<!--                                        <form method="post">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label th:for="registerFormDTO.username">Username-->
+<!--                                                    <input class="form-control" th:field="${registerFormDTO.username}">-->
+<!--                                                </label>-->
+<!--                                                <p class="error" th:errors="${registerFormDTO.username}"></p>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label th:for="registerFormDTO.password">Password-->
+<!--                                                    <input class="form-control" th:field="${registerFormDTO.password}" type="password">-->
+<!--                                                </label>-->
+<!--                                                <p class="error" th:errors="${registerFormDTO.password}"></p>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label th:for="registerFormDTO.verifyPassword">Password-->
+<!--                                                    <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password">-->
+<!--                                                </label>-->
+<!--                                                &lt;!&ndash;<p class="error" th:errors="${registerFormDTO.password}"></p>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            <input type="submit" class="btn btn-primary" value="Register" />-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <!-- REGISTER MODAL -->
+
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Who?</h2>
+                        <p>A free secure user account is required to safeguard your images.  The only information
+                            you'll need to register is a username and password. Sign up today!</p>
+                        <p><a class="btn btn-secondary" href="#" role="button">button &raquo;</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>What?</h2>
+                        <p>Image upscaling enlarges images by increasing a low resolution image's size to a higher resolution without
+                            losing image quality.  For example, upscaling a 600 x 400 pixel image will produce a 2400 x 1600 pixel image
+                            without blurring it.</p>
+                        <p><a class="btn btn-secondary" href="#" role="button">button &raquo;</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>How?</h2>
+                        <p>Our Cloud API isn't a GAN-based solution, thus it uses an advanced CV algorithm to enhance image quality
+                            when upscaling that doesn't generate new information in the upscaled image that doesn't already exist
+                            in the original image.</p>
+                        <p><a class="btn btn-secondary" href="#" role="button">button &raquo;</a></p>
+                    </div>
+                </div>
+                <hr>
+            </div> <!-- /container -->
+        </main>
+        <!-- /Main Jumbotron -->
+
+
+        <!-- LOGIN [ CURRENT | FUNCTIONAL -->
+        <!--<form method="post">
+            <div class="form-group">
+                <label th:for="username">Username
+                    <input class="form-control" th:field="${loginFormDTO.username}">
+                </label>
+                <p class="error" th:errors="${loginFormDTO.username}"></p>
+            </div>
+            <div class="form-group">
+                <label>Password
+                    <input class="form-control" th:field="${loginFormDTO.password}" type="password">
+                </label>
+                <p class="error" th:errors="${loginFormDTO.password}"></p>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Log In" />
+        </form>
+        <br>
+        <p>Don't have an account? <a href="/register">Register for one.</a></p>-->
+        <!-- LOGIN [ CURRENT | FUNCTIONAL -->
+
+
+        <!-- FOOTER -->
+        <div th:replace="fragments :: page-footer"></div>
+        <!-- /FOOTER -->
+
+    </body>
 </html>

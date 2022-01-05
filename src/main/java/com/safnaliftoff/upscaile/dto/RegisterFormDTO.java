@@ -1,4 +1,4 @@
-package com.safnaliftoff.upscaile.models.dto;
+package com.safnaliftoff.upscaile.dto;
 
 public class RegisterFormDTO extends LoginFormDTO {
     private String verifyPassword;

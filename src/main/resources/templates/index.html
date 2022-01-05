@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
+    <head th:replace="fragments :: head">
 
-<div th:replace="fragments :: page-header"></div>
 
-<div class="container body-content">
-    <h2>upsc.Ai.le Authentication Site INDEX</h2>
-</div>
+    </head>
+    <body>
 
-<div>
-<h1>User Account Page ...</h1>
-<p>User Files Go Here ...</p>
-</div>
+        <div th:replace="fragments :: page-header"></div>
+            <div class="container body-content">
+                <br>
+                <h3><span class="icon"><i class="fas fa-cloud-upload-alt"></i></span> Upload files to be upscaled :</h3>
+                <br>
+                <!-- ORIGINAL UPLOAD BROWSE -->
+                <!--<div class="row">
+                    <div class="col-lg-8 mt-5">
 
-</body>
+                        <div th:if="${message}">
+                            <h2 th:text="${message}"/>
+                        </div>
+
+                        <form method="POST" enctype="multipart/form-data" action="/">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name="file">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+
+                            <button id="bottomPadding" class="btn btn-primary" type="submit">Submit form</button>
+                        </form>
+                    </div>
+                </div>-->
+
+                <!-- DRAG & DROP File Upload -->
+                <form method="POST" enctype="multipart/form-data" action="/">
+                    <div class="form-group">
+                        <div class="custom-file drop-zone">
+                            <span class="drop-zone__prompt uploadText">Drag & Drop File Here <br> or <br> Click to Browse</span>
+                            <input type="file" name="file" class="drop-zone__input custom-file-input">
+                        </div>
+                        <br>
+                        <button id="bottomPadding" class="btn btn-primary" type="submit">Submit Image</button>
+                    </div>
+                </form>
+
+                <!-- USER ACCOUNT FILE LISTING -->
+                <div id="indexCSS">
+                    <br>
+                    <h3>User Account Page ...</h3>
+                    <p>User Files Will Be Listed Here ...</p>
+                </div>
+                <!-- USER ACCOUNT FILE LISTING -->
+
+            </div>
+        </div>
+
+        <div th:replace="fragments :: page-footer"></div>
+
+
+
+    </body>
 </html>
