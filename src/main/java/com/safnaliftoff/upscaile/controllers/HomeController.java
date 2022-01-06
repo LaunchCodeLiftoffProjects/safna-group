@@ -39,7 +39,7 @@ public class HomeController {
             System.out.println(input_path.toString());
             System.out.println(output_path.toAbsolutePath().toString().replace("\\", "\\\\"));
             String[] params = new String[] {
-                    "realesrgan-ncnn-vulkan-v0.1.3.2\\windows\\realesrgan-ncnn-vulkan-v0.1.3.2-windows\\realesrgan-ncnn-vulkan.exe",
+                    "realesrgan-ncnn-vulkan-v0.1.3.2\\macos\\realesrgan-ncnn-vulkan-v0.1.3.2-windows\\realesrgan-ncnn-vulkan.exe",
                     "-i", "realesrgan-ncnn-vulkan-v0.1.3.2\\img_in\\" + file.getOriginalFilename(),
                     "-o", output_path.toAbsolutePath().toString().replace("\\", "\\\\")
             };
