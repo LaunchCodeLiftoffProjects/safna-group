@@ -20,7 +20,7 @@ public class User extends AbstractEntity {
 
     @OneToMany()
     @JoinColumn(name= "user_id")
-    private List<Image> images = new ArrayList<>();
+    private List<Image> images = new ArrayList<Image>();
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

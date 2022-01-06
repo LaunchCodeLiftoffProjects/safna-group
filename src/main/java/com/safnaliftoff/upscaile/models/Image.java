@@ -16,10 +16,10 @@ public class Image extends AbstractEntity {
     public Image() {
     }
 
-    public Image(String name, String location, User user) {
+    public Image(User user, String name, String location) {
+        this.user = user;
         this.name = name;
         this.location = location;
-        this.user = user;
     }
 
     public User getUser() { return user; }

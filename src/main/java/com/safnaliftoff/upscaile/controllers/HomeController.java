@@ -57,7 +57,7 @@ public class HomeController {
             Process process = pb.start();
             process.waitFor();
 
-            imageRepository.save(new Image(file.getOriginalFilename(), output_path.toAbsolutePath().toString(), currentUser));
+            imageRepository.save(new Image(currentUser, file.getOriginalFilename(), output_path.toAbsolutePath().toString()));
 
         } catch (IOException e) {
             e.printStackTrace();
