@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,27 +38,49 @@ public class HomeController {
     public String uploadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
 
         User currentUser=  authenticationController.getUserFromSession(request.getSession());
+        String userDir = System.getProperty("user.dir");
 
         try {
-            Runtime runTime = Runtime.getRuntime();
-            Path input_path = Paths.get("realesrgan-ncnn-vulkan-v0.1.3.2\\img_in\\" + file.getOriginalFilename()).toAbsolutePath();
+            // Save uploaded file to input folder with current time appended to original filename
+            String filename = new Date().getTime() + "-" + file.getOriginalFilename();
+            Path input_path = Paths.get(userDir + "/upscaling/input/" + filename);
             Files.createDirectories(input_path.getParent());
             Files.write(input_path, file.getBytes());
 
-            Path output_path = Paths.get(HomeController.class.getResource("/").getPath().substring(1) + new Date().getTime() + "-" + file.getOriginalFilename());
-//            System.out.println(input_path.toString());
-//            System.out.println(output_path.toAbsolutePath().toString().replace("\\", "\\\\"));
-            String[] params = new String[] {
-                    "realesrgan-ncnn-vulkan-v0.1.3.2\\windows\\realesrgan-ncnn-vulkan-v0.1.3.2-windows\\realesrgan-ncnn-vulkan.exe",
-                    "-i", "realesrgan-ncnn-vulkan-v0.1.3.2\\img_in\\" + file.getOriginalFilename(),
-                    "-o", output_path.toAbsolutePath().toString().replace("\\", "\\\\")
-            };
+            //
+            Path output_path = Paths.get(userDir + "/upscaling/images/" + filename);
 
-            ProcessBuilder pb = new ProcessBuilder(params);
+            ProcessBuilder pb = new ProcessBuilder();
+            String[] params;
+            String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                params = new String[] {
+                        "./upscaling/realesrgan-ncnn-vulkan.exe",
+                        "-i", "upscaling/input",
+                        "-o", "upscaling/images"
+                };
+            } else {
+                params = new String[] {
+                        "./realesrgan-ncnn-vulkan",
+                        "-i", "input",
+                        "-o", "images"
+                };
+                pb.directory(new File(userDir + "/upscaling"));
+            }
+
+            pb.command(params);
             Process process = pb.start();
             process.waitFor();
 
             imageRepository.save(new Image(currentUser, file.getOriginalFilename(), output_path.toAbsolutePath().toString()));
+
+            File oldImage = new File(input_path.toString());
+            if (oldImage.delete()) {
+                System.out.println("Deleted the file: " + oldImage.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

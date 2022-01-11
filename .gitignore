@@ -37,6 +37,7 @@ out/
 .vscode/
 
 ### Upscaling ###
-/realesrgan-ncnn-vulkan-v0.1.3.2/macos/realesrgan-ncnn-vulkan-v0.1.3.2-macos/models/
-/realesrgan-ncnn-vulkan-v0.1.3.2/windows/realesrgan-ncnn-vulkan-v0.1.3.2-windows/models/
-/realesrgan-ncnn-vulkan-v0.1.3.2/img_in/
+/upscaling/macos/realesrgan-ncnn-vulkan-v0.1.3.2-macos/models/
+/upscaling/models/
+/upscaling/input/
+/upscaling/images/
