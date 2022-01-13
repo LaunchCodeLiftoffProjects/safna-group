@@ -8,7 +8,9 @@ public class Image extends AbstractEntity {
 
     private String name;
 
-    private String location;
+    private String locationHi;
+
+    private String locationLo;
 
     @ManyToOne
     private User user;
@@ -16,10 +18,11 @@ public class Image extends AbstractEntity {
     public Image() {
     }
 
-    public Image(User user, String name, String location) {
+    public Image(User user, String name, String locationHi, String locationLo) {
         this.user = user;
         this.name = name;
-        this.location = location;
+        this.locationHi = locationHi;
+        this.locationLo = locationLo;
     }
 
     public User getUser() { return user; }
@@ -34,12 +37,20 @@ public class Image extends AbstractEntity {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocationHi() {
+        return locationHi;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationHi(String location) {
+        this.locationHi = location;
+    }
+
+    public String getLocationLo() {
+        return locationLo;
+    }
+
+    public void setLocationLo(String location) {
+        this.locationLo = location;
     }
 
 }

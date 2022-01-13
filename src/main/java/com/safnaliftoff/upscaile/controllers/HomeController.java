@@ -6,6 +6,7 @@ import com.safnaliftoff.upscaile.models.Image;
 import com.safnaliftoff.upscaile.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -32,7 +35,14 @@ public class HomeController {
     private AuthenticationController authenticationController;
 
     @GetMapping
-    public String main() { return "index"; }
+    public String main(Model model, HttpServletRequest request) {
+        User currentUser=  authenticationController.getUserFromSession(request.getSession());
+        List<Image> userImages = currentUser.getImages();
+        model.addAttribute("images", userImages);
+        System.out.println(userImages);
+
+        return "index";
+    }
 
     @PostMapping
     public String uploadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
@@ -45,10 +55,12 @@ public class HomeController {
             String filename = new Date().getTime() + "-" + file.getOriginalFilename();
             Path input_path = Paths.get(userDir + "/upscaling/input/" + filename);
             Files.createDirectories(input_path.getParent());
+            Files.createDirectories(Paths.get(userDir + "/upscaling/original_images/" + filename).getParent());
+            Files.createDirectories(Paths.get(userDir + "/upscaling/processed_images/" + filename).getParent());
             Files.write(input_path, file.getBytes());
 
             //
-            Path output_path = Paths.get(userDir + "/upscaling/images/" + filename);
+            Path output_path = Paths.get(userDir + "/upscaling/processed_images/" + filename);
 
             ProcessBuilder pb = new ProcessBuilder();
             String[] params;
@@ -58,13 +70,13 @@ public class HomeController {
                 params = new String[] {
                         "./upscaling/realesrgan-ncnn-vulkan.exe",
                         "-i", "upscaling/input",
-                        "-o", "upscaling/images"
+                        "-o", "upscaling/processed_images"
                 };
             } else {
                 params = new String[] {
                         "./realesrgan-ncnn-vulkan",
                         "-i", "input",
-                        "-o", "images"
+                        "-o", "processed_images"
                 };
                 pb.directory(new File(userDir + "/upscaling"));
             }
@@ -73,14 +85,9 @@ public class HomeController {
             Process process = pb.start();
             process.waitFor();
 
-            imageRepository.save(new Image(currentUser, file.getOriginalFilename(), output_path.toAbsolutePath().toString()));
-
-            File oldImage = new File(input_path.toString());
-            if (oldImage.delete()) {
-                System.out.println("Deleted the file: " + oldImage.getName());
-            } else {
-                System.out.println("Failed to delete the file.");
-            }
+            imageRepository.save(new Image(currentUser, filename,
+                    output_path.toAbsolutePath().toString(), input_path.toAbsolutePath().toString()));
+            Path temp = Files.move(input_path, Paths.get(userDir + "/upscaling/original_images/" + filename));
 
         } catch (IOException e) {
             e.printStackTrace();
