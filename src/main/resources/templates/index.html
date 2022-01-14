@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org/">
     <head th:replace="fragments :: head">
 
-
     </head>
     <body>
 
@@ -48,14 +47,44 @@
                 <div id="indexCSS">
                     <br>
                     <h3>User Account Page ...</h3>
-                    <p>User Files Will Be Listed Here ...</p>
+                    <th:block th:with="colCount=${3}">
+                        <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}"  class="row">
+                            <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-sm-4">
+                                <div class="thumbnail">
+                                    <div class="img-comp-img">
+                                        <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200">
+                                    </div>
+                                    <div class="img-comp-img img-comp-overlay">
+                                        <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}" width="300" height="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+
+<!--                    <th:block th:each = "image : ${images}">
+                        <div class="img-comp-container">
+                            <div class="img-comp-img">
+                                <img th:src="${'/upscaling/original_images/' + image.name}" width="300" height="200">
+                            </div>
+                            <div class="img-comp-img img-comp-overlay">
+                                <img th:src="${'/upscaling/processed_images/' + image.name}" width="300" height="200">
+                            </div>
+                        </div>
+                    </th:block>-->
                 </div>
                 <!-- USER ACCOUNT FILE LISTING -->
+
+
+
+
+
 
             </div>
         </div>
 
         <div th:replace="fragments :: page-footer"></div>
+        <script>initComparisons()</script>
 
 
 
