@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
     <head th:replace="fragments :: head">
-
     </head>
     <body>
 
@@ -47,16 +46,12 @@
                 <div id="indexCSS">
                     <br>
                     <h3>User Account Page ...</h3>
+
                     <th:block th:with="colCount=${3}">
                         <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}"  class="row">
                             <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-sm-4">
                                 <div class="thumbnail">
-                                    <div class="img-comp-img">
-                                        <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200">
-                                    </div>
-                                    <div class="img-comp-img img-comp-overlay">
-                                        <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}" width="300" height="200">
-                                    </div>
+                                    <img class="img-thumbnail" th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200" th:alt="${'/upscaling/original_images/' + images.get(r + c).name}">
                                 </div>
                             </div>
                         </div>
@@ -72,11 +67,23 @@
                             </div>
                         </div>
                     </th:block>-->
+                    <div id="myModal" class="img-modal">
+                        <!-- Modal Content (The Image) -->
+                        <div class="modal--content">
+                            <!-- The Close Button -->
+                            <span class="close">&times;</span>
+                            <div class="img-comp-container">
+                                <div class="img-comp-img">
+                                    <img src="" width="300" height="200" id="img_hi">
+                                </div>
+                                <div class="img-comp-img img-comp-overlay">
+                                    <img src="" width="300" height="200" id="img_lo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- USER ACCOUNT FILE LISTING -->
-
-
-
 
 
 
@@ -85,6 +92,7 @@
 
         <div th:replace="fragments :: page-footer"></div>
         <script>initComparisons()</script>
+
 
 
 
