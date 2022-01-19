@@ -223,20 +223,21 @@ body {
 
 .img-comp-container {
     position: relative;
-    height: 200px; /*should be the same height as the images*/
-    width: 300px;
+    height: 720px; /*should be the same height as the images*/
 }
 
 .img-comp-img {
     position: absolute;
-    width: auto;
     height: auto;
+    width: 100%;
     overflow: hidden;
 }
 
 .img-comp-img img {
     display: block;
     vertical-align: middle;
+    height: 720px;
+    width: auto;
 }
 
 .img-comp-slider {
@@ -244,77 +245,24 @@ body {
     z-index: 9;
     cursor: ew-resize;
     /*set the appearance of the slider:*/
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: #2196F3;
     opacity: 0.7;
     border-radius: 50%;
 }
 
+.thumbnail {;
+}
 
 /* Style the Image Used to Trigger the Modal */
 .img-thumbnail {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  height: auto;
+  width: 100%;
+  max-width: 1280px;
 }
 
-.img-thumbnail:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.img-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (Image) */
-.modal--content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
- }
-
-/* Add Animation - Zoom in the Modal */
-.modal--content, #caption {
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@keyframes zoom {
-  from {transform:scale(0)}
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal--content {
-    width: 100%;
-  }
-}
 
