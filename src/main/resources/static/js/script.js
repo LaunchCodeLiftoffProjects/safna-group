@@ -132,30 +132,13 @@ function updateThumbnail(dropZoneElement, file) {
 //  }
 //}
 
-// Get the modal
-var modal = document.getElementById("myModal");
+var modals = document.getElementsByClassName("w3-modal");
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var images = $('.img-thumbnail');
+window.onclick = function(event) {
+    for (let i=0; i<modals.length; ++i) {
+        if (event.target == modals[i]) {
+            modals[i].style.display="none";
+        }
+    }
 
-for (var i=0; i<images.length; i++) {
-    var image = images[i];
-    image.onclick = openModalImage;
-}
-
-function openModalImage() {
-    modal.style.display = "block";
-    var modalImgLo = document.getElementsByClassName("img_lo");
-    var modalImgHi = document.getElementsByClassName("img_hi");
-    modalImgLo.src = this.alt;
-    modalImgHi.src = this.src;
-}
-
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
 }

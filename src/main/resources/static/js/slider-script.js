@@ -481,13 +481,13 @@
 
         this.rightImage = document.createElement("div");
         this.rightImage.className = 'jx-image jx-right';
-        this.imgAfter.image.className = 'img_hi'
+        //this.imgAfter.image.className = 'img_hi'
         this.rightImage.appendChild(this.imgAfter.image);
 
 
         this.leftImage = document.createElement("div");
         this.leftImage.className = 'jx-image jx-left';
-        this.imgBefore.image.className = 'img_lo'
+        //this.imgBefore.image.className = 'img_lo'
         this.leftImage.appendChild(this.imgBefore.image);
 
         this.labCredit = document.createElement("a");

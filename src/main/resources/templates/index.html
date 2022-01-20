@@ -4,109 +4,106 @@
     </head>
     <body>
 
-        <div th:replace="fragments :: page-header"></div>
-            <div class="container body-content">
-                <br>
-                <h3><span class="icon"><i class="fas fa-cloud-upload-alt"></i></span> Upload files to be upscaled :</h3>
-                <br>
-                <!-- ORIGINAL UPLOAD BROWSE -->
-                <!--<div class="row">
-                    <div class="col-lg-8 mt-5">
+    <div th:replace="fragments :: page-header"></div>
+        <div class="container body-content">
+            <br>
+            <h3><span class="icon"><i class="fas fa-cloud-upload-alt"></i></span> Upload files to be upscaled :</h3>
+            <br>
+            <!-- ORIGINAL UPLOAD BROWSE -->
+            <!--<div class="row">
+                <div class="col-lg-8 mt-5">
 
-                        <div th:if="${message}">
-                            <h2 th:text="${message}"/>
-                        </div>
+                    <div th:if="${message}">
+                        <h2 th:text="${message}"/>
+                    </div>
 
-                        <form method="POST" enctype="multipart/form-data" action="/">
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="file">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
+                    <form method="POST" enctype="multipart/form-data" action="/">
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="file">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-
-                            <button id="bottomPadding" class="btn btn-primary" type="submit">Submit form</button>
-                        </form>
-                    </div>
-                </div>-->
-
-                <!-- DRAG & DROP File Upload -->
-                <form method="POST" enctype="multipart/form-data" action="/">
-                    <div class="form-group">
-                        <div class="custom-file drop-zone">
-                            <span class="drop-zone__prompt uploadText">Drag & Drop File Here <br> or <br> Click to Browse</span>
-                            <input type="file" name="file" class="drop-zone__input custom-file-input">
                         </div>
-                        <br>
-                        <button id="bottomPadding" class="btn btn-primary" type="submit">Submit Image</button>
-                    </div>
-                </form>
 
-                <!-- USER ACCOUNT FILE LISTING -->
-                <div id="indexCSS">
+                        <button id="bottomPadding" class="btn btn-primary" type="submit">Submit form</button>
+                    </form>
+                </div>
+            </div>-->
+
+            <!-- DRAG & DROP File Upload -->
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <div class="form-group">
+                    <div class="custom-file drop-zone">
+                        <span class="drop-zone__prompt uploadText">Drag & Drop File Here <br> or <br> Click to Browse</span>
+                        <input type="file" name="file" class="drop-zone__input custom-file-input">
+                    </div>
                     <br>
-                    <h3>My Images</h3>
+                    <button id="bottomPadding" class="btn btn-primary" type="submit">Submit Image</button>
+                </div>
+            </form>
 
-                    <!-- Trigger the Modal -->
-                    <th:block th:with="colCount=${3}">
-                        <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}"  class="row">
-                            <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-sm-4">
-                                <div class="thumbnail">
-                                    <img class="img-thumbnail" th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200" th:alt="${'/upscaling/original_images/' + images.get(r + c).name}">
-                                    <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
+            <!-- USER ACCOUNT FILE LISTING -->
+            <div id="indexCSS">
+                <br>
+                <h3>My Images</h3>
+
+                <!-- Trigger the Modal -->
+                <th:block th:with="colCount=${3}">
+                    <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}"  class="row">
+                        <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-sm-4">
+                            <div class="w3-modal" th:id="${'img-comp-' + images.get(r + c).id}" >
+                                <div class="w3-modal-content w3-animate-zoom">
+                                    <div class="juxtapose">
+                                        <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}" data-label="Original" alt="" />
+                                        <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" data-label="Upscaled" alt="" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </th:block>
+                            <div class="thumbnail">
+                                <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200" th:data-thing="${'img-comp-' + images.get(r + c).id}" onclick="document.getElementById(this.getAttribute('data-thing')).style.display='block'" style="cursor:zoom-in">
 
-                    <!-- The Modal -->
-                    <div id="myModal" class="img-modal">
-
-                        <!-- Modal Content (The Images) -->
-                        <div class="modal-content">
-                            <!-- The Close Button -->
-                            <span class="close">&times;</span>
-                            <div class="juxtapose">
-                                <img src="/upscaling/original_images/1642543442041-t1_lo.png" data-label="Original" alt="" id="img_lo"/>
-                                <img src="/upscaling/processed_images/1642543442041-t1_lo.png" data-label="Upscaled" alt="" id="img_hi"/>
+                                <div class="btn-group btn-group-justified">
+                                    <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
+                                    <a href="#" class="btn btn-warning">Delete</a>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
+                </th:block>
+
 
 
 <!--                    <th:block th:with="colCount=${1}">
-                        <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}" class="row">
-                            <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-12">
-                                <div class="img-thumbnail justify-content-center">
-                                    <div class="img-comp-container">
-                                        <div class="img-comp-img">
-                                            <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}">
-                                        </div>
-                                        <div class="img-comp-img img-comp-overlay">
-                                            <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}">
-                                        </div>
-
+                    <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}" class="row">
+                        <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-12">
+                            <div class="img-thumbnail justify-content-center">
+                                <div class="img-comp-container">
+                                    <div class="img-comp-img">
+                                        <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}">
                                     </div>
-                                    <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
+                                    <div class="img-comp-img img-comp-overlay">
+                                        <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}">
+                                    </div>
+
                                 </div>
+                                <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
                             </div>
                         </div>
-                    </th:block>-->
+                    </div>
+                </th:block>-->
 
 
 
-                <!-- USER ACCOUNT FILE LISTING -->
+            <!-- USER ACCOUNT FILE LISTING -->
 
 
 
-            </div>
         </div>
+    </div>
 
-        <div th:replace="fragments :: page-footer"></div>
-        <script src="/js/slider-script.js"></script>
-
-
+    <div th:replace="fragments :: page-footer"></div>
+    <script src="/js/slider-script.js"></script>
 
 
     </body>
