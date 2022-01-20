@@ -47,7 +47,35 @@
                     <br>
                     <h3>My Images</h3>
 
-                    <th:block th:with="colCount=${1}">
+                    <!-- Trigger the Modal -->
+                    <th:block th:with="colCount=${3}">
+                        <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}"  class="row">
+                            <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-sm-4">
+                                <div class="thumbnail">
+                                    <img class="img-thumbnail" th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200" th:alt="${'/upscaling/original_images/' + images.get(r + c).name}">
+                                    <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="img-modal">
+
+                        <!-- Modal Content (The Images) -->
+                        <div class="modal-content">
+                            <!-- The Close Button -->
+                            <span class="close">&times;</span>
+                            <div class="juxtapose">
+                                <img src="/upscaling/original_images/1642543442041-t1_lo.png" data-label="Original" alt="" id="img_lo"/>
+                                <img src="/upscaling/processed_images/1642543442041-t1_lo.png" data-label="Upscaled" alt="" id="img_hi"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+<!--                    <th:block th:with="colCount=${1}">
                         <div th:each="r : ${#numbers.sequence(0, images.size(), colCount)}" class="row">
                             <div th:each="c : ${#numbers.sequence(0, colCount - 1)}" th:if="${r + c &lt; images.size()}" class="col-12">
                                 <div class="img-thumbnail justify-content-center">
@@ -58,14 +86,15 @@
                                         <div class="img-comp-img img-comp-overlay">
                                             <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}">
                                         </div>
-                                        <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary">Download</a>
 
                                     </div>
                                     <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
                                 </div>
                             </div>
                         </div>
-                    </th:block>
+                    </th:block>-->
+
+
 
                 <!-- USER ACCOUNT FILE LISTING -->
 
@@ -75,7 +104,7 @@
         </div>
 
         <div th:replace="fragments :: page-footer"></div>
-        <script>initComparisons()</script>
+        <script src="/js/slider-script.js"></script>
 
 
 
