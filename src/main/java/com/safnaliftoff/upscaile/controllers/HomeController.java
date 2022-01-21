@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -38,6 +36,7 @@ public class HomeController {
     public String main(Model model, HttpServletRequest request) {
         User currentUser=  authenticationController.getUserFromSession(request.getSession());
         List<Image> userImages = currentUser.getImages();
+        Collections.reverse(userImages);
         model.addAttribute("images", userImages);
         System.out.println(userImages);
 
@@ -45,7 +44,24 @@ public class HomeController {
     }
     @GetMapping("/deleteImage")
     public  String deleteImage(@RequestParam int imageId) {
+        Image image = imageRepository.findById(imageId).get();
+
+        File imgFile = new File(Paths.get(System.getProperty("user.dir") + image.getLocationHi()).toAbsolutePath().toString());
+        if (imgFile.delete()) {
+            System.out.println("Deleted the file: " + imgFile.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+
+        imgFile = new File(Paths.get(System.getProperty("user.dir") + image.getLocationLo()).toAbsolutePath().toString());
+        if (imgFile.delete()) {
+            System.out.println("Deleted the file: " + imgFile.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+
         imageRepository.deleteById(imageId);
+
         return "redirect:/";
 
     }
