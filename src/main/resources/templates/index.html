@@ -54,16 +54,16 @@
                             <div class="w3-modal" th:id="${'img-comp-' + images.get(r + c).id}" >
                                 <div class="w3-modal-content w3-animate-zoom">
                                     <div class="juxtapose">
-                                        <img th:src="${'/upscaling/original_images/' + images.get(r + c).name}" data-label="Original" alt="" />
-                                        <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" data-label="Upscaled" alt="" />
+                                        <img th:src="${images.get(r + c).locationLo}" data-label="Original" alt="" />
+                                        <img th:src="${images.get(r + c).locationHi}" data-label="Upscaled" alt="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="thumbnail">
-                                <img th:src="${'/upscaling/processed_images/' + images.get(r + c).name}" width="300" height="200" th:data-thing="${'img-comp-' + images.get(r + c).id}" onclick="document.getElementById(this.getAttribute('data-thing')).style.display='block'" style="cursor:zoom-in">
+                                <img th:src="${images.get(r + c).locationHi}" width="300" height="200" th:data-thing="${'img-comp-' + images.get(r + c).id}" onclick="document.getElementById(this.getAttribute('data-thing')).style.display='block'" style="cursor:zoom-in">
 
                                 <div class="btn-group btn-group-justified">
-                                    <a th:href="${'/upscaling/processed_images/' + images.get(r + c).name}" class="btn btn-primary" download>Download</a>
+                                    <a th:href="${images.get(r + c).locationHi}" class="btn btn-primary" download>Download</a>
                                     <a href="#" class="btn btn-warning">Delete</a>
                                 </div>
                             </div>
