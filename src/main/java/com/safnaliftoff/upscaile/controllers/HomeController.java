@@ -60,7 +60,8 @@ public class HomeController {
             Files.write(input_path, file.getBytes());
 
             //
-            Path output_path = Paths.get(userDir + "/upscaling/processed_images/" + filename);
+            Path lo_path = Paths.get("/upscaling/original_images/" + filename);
+            Path hi_path = Paths.get("/upscaling/processed_images/" + filename.substring(0, filename.length()-3) + "png");
 
             ProcessBuilder pb = new ProcessBuilder();
             String[] params;
@@ -86,7 +87,7 @@ public class HomeController {
             process.waitFor();
 
             imageRepository.save(new Image(currentUser, filename,
-                    output_path.toAbsolutePath().toString(), input_path.toAbsolutePath().toString()));
+                    hi_path.toString(), lo_path.toString()));
             Path temp = Files.move(input_path, Paths.get(userDir + "/upscaling/original_images/" + filename));
 
         } catch (IOException e) {
