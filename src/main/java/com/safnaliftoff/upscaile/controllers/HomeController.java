@@ -43,6 +43,12 @@ public class HomeController {
 
         return "index";
     }
+    @GetMapping("/deleteImage")
+    public  String deleteImage(@RequestParam int imageId) {
+        imageRepository.deleteById(imageId);
+        return "redirect:/";
+
+    }
 
     @PostMapping
     public String uploadImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
