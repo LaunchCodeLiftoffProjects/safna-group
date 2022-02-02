@@ -18,6 +18,9 @@ body {
   #bottomPadding {
       margin-bottom: 5rem;
   }
+  #brandSubheading {
+      margin-left: 1.5rem;
+  }
 
   /* FOOTER */
   #footerText {
@@ -26,6 +29,9 @@ body {
   }
 
   /* REGISTRATION FORM */
+  #openLoginModalButton {
+      margin-bottom: .5rem;
+  }
   #registerForm {
       padding-top: 3.5rem;
   }
@@ -34,6 +40,9 @@ body {
   }
   #registerButton {
       margin-bottom: 3.5rem;
+  }
+  #loginBTN {
+      margin-bottom: 2rem;
   }
 
   /* INDEX - HOMEPAGE - USER FILES */
@@ -115,21 +124,6 @@ body {
           color: #fff;
   }
 
-
-  /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-  .drag-n-drop {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  .drag-n-drop-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50vh;
-    background: #5256ad;
-  } */
   .drag-area{
     border: 2px dashed #fff;
     height: 500px;
